@@ -1,0 +1,6 @@
+node_modules/
+secrets/
+output.json
+response.json
+heroku_response.json
+.idea/
