@@ -20,10 +20,21 @@ function createFakeRequest(callback){
     let dataOptions = {
         "TODAY_DATE" : TODAY_DATE,
         "FAKE_TRIP_ID" : FAKE_TRIP_ID,
-        "SPECIES_KEY" : 'snoek',
-        "SPECIES_LABEL" : "Snoek",
-        "CATCH_COOP_WEIGHT" : 100
+        "SPECIES_LABEL" : 'WC Rock Lobster',
+        "SPECIES_KEY" : "wclobster",
+        "CATCH_COOP_WEIGHT" : 100,
+        "USERNAME" : "test7@a.b",
+        "MAIN_FISHER" : "test_fisher7"
     };
+
+    // WC Rock Lobster
+    // wclobster
+
+    // "SPECIES_KEY" : 'WC Rock Lobster',
+    // "SPECIES_LABEL" : "wclobster",
+
+    // "SPECIES_KEY" : 'snoek',
+    // "SPECIES_LABEL" : "Snoek",
 
     let options = { method: 'POST',
         url: OPENFN_URL,
