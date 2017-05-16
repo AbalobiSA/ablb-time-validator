@@ -5,3 +5,4 @@ response.json
 heroku_response.json
 .idea/
 logs/
+tester.js

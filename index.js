@@ -12,7 +12,7 @@ let winston = require("winston");
  ============================================================================*/
 
 winston.add(winston.transports.File, {
-    filename: './logs/winston.log',
+    filename: './logs/abalobi_pg_timer.log',
     maxsize: 200000
 });
 
@@ -27,11 +27,13 @@ let PROCESS_START_TIME;
 let PROCESS_END_TIME;
 let QUERY_ITERATOR;
 
+let PATH_LOGS;
+
 /*============================================================================
     Run
  ============================================================================*/
 
-main();
+// main();
 
 /*============================================================================
     Driver
@@ -45,8 +47,6 @@ function main(){
     TIMEOUT_MILIS = 1000;
 
     postToAggregate();
-
-
 }
 
 /*============================================================================
@@ -81,6 +81,10 @@ function main(){
     OpenFn - Submit Trip
  ============================================================================*/
 
+/**
+ * Makes a fake post to aggregate and initiates the recursive
+ * Query to postgres.
+ */
 function postToAggregate(){
     console.log("Posting a fake entry to ODK Aggregate...");
     try{
@@ -104,6 +108,11 @@ function postToAggregate(){
     Heroku - Query Database
  ============================================================================*/
 
+/**
+ * Will query postgress recursively for the record with the provided ODK UUID
+ * @param odkID
+ * @param config
+ */
 function queryPostGres(odkID, config){
     let PGQUERY = `SELECT * FROM salesforce.ablb_fisher_trip__c WHERE odk_uuid__c LIKE ${odkID}`;
     let options = config || {};
@@ -166,14 +175,6 @@ function queryPostGres(odkID, config){
  * for the record in the PG database.
  */
 function recalculateTimeout(){
-    // console.log(`Timeout Value: ${TIMEOUT_MILIS}`);
-    // switch (true){
-    //     case (TIMEOUT_MILIS >= 3000 && TIMEOUT_MILIS < 18000): TIMEOUT_MILIS += 3000;
-    //     break;
-    //     case (TIMEOUT_MILIS >= 18000 && TIMEOUT_MILIS < 30000): TIMEOUT_MILIS += 5000;
-    //     break;
-    // }
-
     if (QUERY_ITERATOR < 12){
         QUERY_ITERATOR++;
         TIMEOUT_MILIS = 1000;
@@ -220,9 +221,9 @@ function elapsed_time(status){
 }
 
 /*============================================================================
-    Logging functions
+    Exports
  ============================================================================*/
 
-// function logOutput(output){
-//
-// }
+module.exports = {
+    runTest: main
+};
