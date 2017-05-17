@@ -50,13 +50,15 @@ function init() {
     QUERY_ITERATOR = 0;
     TIMEOUT_MILIS = 1000;
 
-    postToAggregate();
+
 }
 
 function runTest(){
     console.log((new Date().getTime()) + " Running - Abalobi Response Time Checker");
     QUERY_ITERATOR = 0;
     TIMEOUT_MILIS = 1000;
+
+    postToAggregate();
 }
 
 
