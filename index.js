@@ -39,45 +39,26 @@ let PATH_LOGS;
     Driver
  ============================================================================*/
 
-function main(){
+function init() {
+    try{
+        postgres = require("./components/mod_postgress.js");
+    } catch (ex){
+        console.log("FAILED TO INITIALIZE POSTGRES! \n" + ex);
+    }
 
-    postgres = require("./components/mod_postgress.js");
-
-    console.log((new Date().getTime()) + " Running - Abalobi Response Time Checker");
-
+    console.log("Initialized abalobi time checker");
     QUERY_ITERATOR = 0;
     TIMEOUT_MILIS = 1000;
 
     postToAggregate();
 }
 
-/*============================================================================
-    Test Functions
- ============================================================================*/
+function runTest(){
+    console.log((new Date().getTime()) + " Running - Abalobi Response Time Checker");
+    QUERY_ITERATOR = 0;
+    TIMEOUT_MILIS = 1000;
+}
 
-// function queryUsers(){
-//     console.log("Creating Query...");
-//     let query = "SELECT Id, FirstName, LastName, primary_community__c, FullPhotoUrl FROM User ";
-//     salesforce.createQuery(query, function(response){
-//         fs.writeFile("output.json", JSON.stringify(response, null, 4), function(){
-//             console.log("FILE WRITTEN!");
-//         })
-//     }, function(error){
-//         console.log(error);
-//     });
-// }
-
-// function query_ODK_ID(input){
-//     console.log("Creating Query...");
-//     let query = "SELECT Id, FirstName, LastName, primary_community__c, FullPhotoUrl FROM Ablb_Fisher_Trip__c ";
-//     salesforce.createQuery(query, function(response){
-//         fs.writeFile("output.json", JSON.stringify(response, null, 4), function(){
-//             console.log("FILE WRITTEN!");
-//         })
-//     }, function(error){
-//         console.log(error);
-//     });
-// }
 
 /*============================================================================
     OpenFn - Submit Trip
@@ -131,7 +112,7 @@ function queryPostGres(odkID, config){
     postgres.query(PGQUERY, null, function(err, res) {
         if(err) {
             winston.log("debug" , elapsed_time("failure"));
-            postgres.close();
+            // postgres.close();
             return console.error('error running query', err);
         }
 
@@ -151,7 +132,7 @@ function queryPostGres(odkID, config){
             } else {
                 // Stop
                 winston.log("debug" , elapsed_time("failure"));
-                postgres.close();
+                // postgres.close();
 
             }
 
@@ -168,7 +149,7 @@ function queryPostGres(odkID, config){
                 PROCESS_END_TIME = process.hrtime();
                 // calculateRunningTime(PROCESS_START_TIME, PROCESS_END_TIME);
 
-                postgres.close();
+                // postgres.close();
             });
         }
     });
@@ -229,5 +210,6 @@ function elapsed_time(status){
  ============================================================================*/
 
 module.exports = {
-    runTest: main
+    runTest: runTest,
+    init: init
 };
