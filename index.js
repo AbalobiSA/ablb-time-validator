@@ -4,7 +4,7 @@
 let salesforce = require("./components/mod_salesforce.js");
 let fs = require("fs");
 let odk = require("./components/mod_odk.js");
-let postgres = require("./components/mod_postgress.js");
+let postgres;
 let winston = require("winston");
 
 /*============================================================================
@@ -40,6 +40,8 @@ let PATH_LOGS;
  ============================================================================*/
 
 function main(){
+
+    postgres = require("./components/mod_postgress.js");
 
     console.log((new Date().getTime()) + " Running - Abalobi Response Time Checker");
 
@@ -129,6 +131,7 @@ function queryPostGres(odkID, config){
     postgres.query(PGQUERY, null, function(err, res) {
         if(err) {
             winston.log("debug" , elapsed_time("failure"));
+            postgres.close();
             return console.error('error running query', err);
         }
 
@@ -148,6 +151,7 @@ function queryPostGres(odkID, config){
             } else {
                 // Stop
                 winston.log("debug" , elapsed_time("failure"));
+                postgres.close();
 
             }
 
