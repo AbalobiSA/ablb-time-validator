@@ -3,7 +3,7 @@
  ============================================================================*/
 
 let request = require("request");
-let secrets = require("../secrets/secrets");
+let secrets = require("../../../../secrets/secrets");
 let dataTemplate = require("./catchData/template");
 
 const OPENFN_URL = secrets.OPENFN_URL;

@@ -2,7 +2,7 @@
  * Created by Carl on 2017-05-08.
  */
 const jsforce = require("jsforce");
-const secrets = require("../secrets/secrets.js");
+let secrets = require("../../../../secrets/secrets");
 
 function createQuery(queryString, success, error){
     const conn = new jsforce.Connection();
