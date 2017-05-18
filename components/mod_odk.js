@@ -22,7 +22,7 @@ function createFakeRequest(callback){
         "FAKE_TRIP_ID" : FAKE_TRIP_ID,
         "SPECIES_LABEL" : 'WC Rock Lobster',
         "SPECIES_KEY" : "wclobster",
-        "CATCH_COOP_WEIGHT" : 100,
+        "CATCH_COOP_WEIGHT" : 0,
         "USERNAME" : "test7@a.b",
         "MAIN_FISHER" : "test_fisher7"
     };
