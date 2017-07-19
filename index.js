@@ -34,6 +34,8 @@ let PATH_LOGS;
  ============================================================================*/
 
 // main();
+// init();
+// runTest();
 
 /*============================================================================
     Driver
@@ -118,14 +120,11 @@ function queryPostGres(odkID, config){
             return console.error('error running query', err);
         }
 
-
-
         // console.log('number:', res);
         function queryAgain(){
             recalculateTimeout();
             queryPostGres(odkID, { showDebugOutput: false });
         }
-
 
         if (res.rowCount === 0) {
             console.log(`No results received, checking again in ${ TIMEOUT_MILIS/1000 } seconds.`);
@@ -137,8 +136,6 @@ function queryPostGres(odkID, config){
                 // postgres.close();
 
             }
-
-
 
         } else {
 

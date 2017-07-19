@@ -2,7 +2,7 @@
     Imports
  ============================================================================*/
 let pg = require('pg');
-let secrets = require("../../../../secrets/secrets");
+let secrets = require("../../../secrets/secrets");
 
 // create a config to configure both pooling behavior
 // and client options

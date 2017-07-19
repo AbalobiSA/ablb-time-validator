@@ -3,7 +3,7 @@
  ============================================================================*/
 
 let request = require("request");
-let secrets = require("../../../../secrets/secrets");
+let secrets = require("../../../secrets/secrets");
 let dataTemplate = require("./catchData/template");
 
 const OPENFN_URL = secrets.OPENFN_URL;
@@ -22,7 +22,7 @@ function createFakeRequest(callback){
         "FAKE_TRIP_ID" : FAKE_TRIP_ID,
         "SPECIES_LABEL" : 'WC Rock Lobster',
         "SPECIES_KEY" : "wclobster",
-        "CATCH_COOP_WEIGHT" : 0,
+        "CATCH_COOP_WEIGHT" : 100,
         "USERNAME" : "test7@a.b",
         "MAIN_FISHER" : "test_fisher7"
     };
